@@ -4,11 +4,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-      - name: Configure Environment Variables
-        run: echo "ENV=production" >> .env
-      - name: Run Bot
-        run: node server.js
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install Node.js and dependencies
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+    - run: npm install
+    - name: Load environment variables
+      uses: bahmutov/dotenv-action@v6
+      with:
+        path: .env
+    - name: Run WhatsAppChatGP bot
+      run: node server.js
+    
+        
