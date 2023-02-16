@@ -1,0 +1,14 @@
+name: Build My App
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+      - name: Configure Environment Variables
+        run: echo "ENV=production" >> .env
+      - name: Run Bot
+        run: node server.js
